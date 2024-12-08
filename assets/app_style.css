@@ -1,0 +1,67 @@
+/* Main container styling */
+.main {
+    padding: 2rem;
+}
+
+/* Title styling */
+.css-10trblm {
+    color: #2E7D32;
+    font-weight: 700;
+}
+
+/* File uploader styling */
+.uploadedFile {
+    border: 2px dashed #2E7D32;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* Prediction box styling */
+.prediction-box {
+    background-color: #F0F2F6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.prediction-text {
+    font-size: 24px;
+    color: #2E7D32;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.confidence-text {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Error message styling */
+.stAlert {
+    border-radius: 5px;
+}
+
+/* Expander styling */
+.streamlit-expander {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .prediction-box {
+        margin-top: 10px;
+        padding: 15px;
+    }
+    
+    .prediction-text {
+        font-size: 20px;
+    }
+    
+    .confidence-text {
+        font-size: 16px;
+    }
+}
