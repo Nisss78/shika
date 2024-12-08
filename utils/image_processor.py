@@ -1,20 +1,47 @@
 import cv2
 import numpy as np
 
-def preprocess_image(image, target_size=(224, 224)):
+def preprocess_image(image, target_size=(224, 224), keep_aspect_ratio=True):
     """
     画像の前処理を行う関数
     
     Args:
         image: 入力画像（OpenCV形式）
         target_size: モデルの入力サイズ（デフォルト: 224x224）
+        keep_aspect_ratio: アスペクト比を維持するかどうか（デフォルト: True）
     
     Returns:
         preprocessed_image: 前処理済みの画像
     """
     try:
-        # リサイズ
-        resized = cv2.resize(image, target_size)
+        if keep_aspect_ratio:
+            # アスペクト比を保持したリサイズ
+            h, w = image.shape[:2]
+            target_w, target_h = target_size
+            aspect = w / h
+            
+            if w > h:
+                new_w = target_w
+                new_h = int(new_w / aspect)
+            else:
+                new_h = target_h
+                new_w = int(new_h * aspect)
+                
+            resized = cv2.resize(image, (new_w, new_h))
+            
+            # パディング
+            delta_w = target_w - new_w
+            delta_h = target_h - new_h
+            top, bottom = delta_h//2, delta_h-(delta_h//2)
+            left, right = delta_w//2, delta_w-(delta_w//2)
+            
+            resized = cv2.copyMakeBorder(
+                resized, top, bottom, left, right,
+                cv2.BORDER_CONSTANT, value=[0, 0, 0]
+            )
+        else:
+            # 単純なリサイズ
+            resized = cv2.resize(image, target_size)
         
         # BGR to RGB
         rgb_image = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
