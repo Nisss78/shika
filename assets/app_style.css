@@ -39,6 +39,31 @@
     margin: 5px 0;
 }
 
+/* Deer details styling */
+.deer-details {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border-left: 4px solid #2E7D32;
+}
+
+.deer-details h4 {
+    color: #2E7D32;
+    margin-bottom: 10px;
+}
+
+.deer-details ul {
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.deer-details li {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+
 /* Error message styling */
 .stAlert {
     border-radius: 5px;

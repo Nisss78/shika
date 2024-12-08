@@ -5,6 +5,56 @@ from utils.image_processor import preprocess_image
 from utils.model_handler import DeerClassifier
 import os
 
+def get_deer_description(deer_type):
+    descriptions = {
+        "ニホンジカ": """
+        <ul>
+            <li>体長: オス120-190cm、メス110-160cm</li>
+            <li>特徴:</li>
+            <ul>
+                <li>夏毛は赤褐色、冬毛は灰褐色</li>
+                <li>尾は短く、尾の周りに白い毛</li>
+                <li>オスは角を持ち、年齢とともに枝分かれが増える</li>
+            </ul>
+            <li>生息地: 本州、四国、九州の森林地帯</li>
+            <li>食性: 草食性（若葉、樹皮、果実など）</li>
+        </ul>
+        """,
+        "エゾシカ": """
+        <ul>
+            <li>体長: オス170-190cm、メス150-170cm</li>
+            <li>特徴:</li>
+            <ul>
+                <li>ニホンジカより大型</li>
+                <li>冬毛は灰色がかった茶色</li>
+                <li>尾の上部に大きな白斑</li>
+            </ul>
+            <li>生息地: 北海道全域</li>
+            <li>食性: 草本類、木の葉、樹皮など</li>
+        </ul>
+        """,
+        "ヤクシカ": """
+        <ul>
+            <li>体長: オス110-130cm、メス100-120cm</li>
+            <li>特徴:</li>
+            <ul>
+                <li>ニホンジカの亜種で、より小型</li>
+                <li>体色は暗褐色</li>
+                <li>島嶼性矮小化の典型例</li>
+            </ul>
+            <li>生息地: 屋久島</li>
+            <li>食性: 下層植生、シダ類など</li>
+        </ul>
+        """,
+        "その他": """
+        <ul>
+            <li>判別が難しい個体、または上記以外の種類の可能性があります。</li>
+            <li>より明確な特徴が必要な場合は、別の角度からの写真を試してみてください。</li>
+        </ul>
+        """
+    }
+    return descriptions.get(deer_type, "情報がありません。")
+
 # Page config
 st.set_page_config(
     page_title="鹿種類識別アプリ",
@@ -57,6 +107,11 @@ def main():
                         <p class="prediction-text">{prediction}</p>
                         <h4>信頼度:</h4>
                         <p class="confidence-text">{confidence:.2f}%</p>
+                        
+                        <div class="deer-details">
+                            <h4>特徴と解説:</h4>
+                            {get_deer_description(prediction)}
+                        </div>
                     </div>
                 """, unsafe_allow_html=True)
 
