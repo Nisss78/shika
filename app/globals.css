@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+.prediction-box {
+  @apply bg-gray-50 rounded-lg p-5 mt-5 shadow-md;
+}
+
+.prediction-text {
+  @apply text-2xl text-primary font-bold my-2;
+}
+
+.confidence-text {
+  @apply text-lg text-gray-600 my-1;
+}
