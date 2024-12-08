@@ -46,23 +46,3 @@ class DeerClassifier:
             
         except Exception as e:
             raise Exception(f"予測中にエラーが発生しました: {str(e)}")
-
-    def predict(self, preprocessed_image):
-        """
-        画像から鹿の種類を予測
-        
-        Args:
-            preprocessed_image: 前処理済みの画像
-            
-        Returns:
-            tuple: (予測されたクラス名, 信頼度)
-        """
-        try:
-            predictions = self.model.predict(preprocessed_image)
-            predicted_class_index = np.argmax(predictions[0])
-            confidence = float(predictions[0][predicted_class_index] * 100)
-            
-            return self.class_names[predicted_class_index], confidence
-            
-        except Exception as e:
-            raise Exception(f"予測中にエラーが発生しました: {str(e)}")
