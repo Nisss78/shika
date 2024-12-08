@@ -42,30 +42,11 @@ def main():
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
             with col1:
-                st.subheader("画像処理オプション")
-                keep_aspect = st.checkbox("アスペクト比を維持する", value=True)
-                
-                # クロップ機能
-                st.write("画像のクロップ")
-                crop = st.checkbox("クロップを有効にする")
-                if crop:
-                    # 画像の寸法を取得
-                    h, w = image.shape[:2]
-                    # クロップ範囲の設定
-                    crop_left = st.slider("左端からの位置", 0, w//2, 0)
-                    crop_right = st.slider("右端からの位置", w//2, w, w)
-                    crop_top = st.slider("上端からの位置", 0, h//2, 0)
-                    crop_bottom = st.slider("下端からの位置", h//2, h, h)
-                    
-                    # クロップの実行
-                    image = image[crop_top:crop_bottom, crop_left:crop_right]
-                    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                
                 st.subheader("アップロードされた画像")
                 st.image(image_rgb, use_column_width=True)
 
             # Preprocess image
-            processed_image = preprocess_image(image, keep_aspect_ratio=keep_aspect)
+            processed_image = preprocess_image(image)
 
             # Make prediction
             prediction, confidence = model.predict(processed_image)
